@@ -86,7 +86,7 @@ def process_poses(test_folders, INPUT_PATH, GT_PATH):
 
         scale = get_scale(np.array(gt_rel_poses), np.array(preds))
 
-        pred_traj_4x4[:,:3,-1] = pred_traj_4x4[:,:3,-1] * scale
+        pred_traj_4x4[1:,:3,-1] = pred_traj_4x4[1:,:3,-1] * scale # skip the first pose from gt
         ATE, RTE, errs, ROT, gt_rot_mag = compute_errors(gt_traj_4x4, pred_traj_4x4)
         print('------------------------')
         print('Results sequence ', sequence)
